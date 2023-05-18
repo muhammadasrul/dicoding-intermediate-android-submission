@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.StoryApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/app_purple</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/app_teal</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/app_white</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="TextInter12SpBlack">
+        <item name="fontFamily">@font/inter</item>
+        <item name="android:textColor">@color/app_black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextInter11SpPurple">
+        <item name="fontFamily">@font/inter</item>
+        <item name="android:textColor">@color/app_purple</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="ToolbarInter24SpBlack" parent="Widget.MaterialComponents.Toolbar">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="titleTextColor">@color/app_black</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextInterBold20SpBlack">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/app_black</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextInterBold18SpBlack">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/app_black</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+</resources>

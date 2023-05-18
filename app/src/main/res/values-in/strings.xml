@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register">Daftar</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Nama</string>
+    <string name="register_copy">Belum memiliki akun? Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="choose_from_gallery">Pilih dari Gallery</string>
+    <string name="or">or</string>
+    <string name="take_a_picture">Ambil Gambar</string>
+    <string name="share_location">Bagikan lokasi</string>
+    <string name="write_your_story">Tulis cerita Anda…</string>
+    <string name="upload">Unggah</string>
+    <string name="permission_needed">Ijin kamera diperlukan!</string>
+    <string name="choose_a_file_first">Silahkan pilih gambar terlebih dahulu!</string>
+    <string name="password_validation_error">Password harus delapan karakter atau lebih.</string>
+    <string name="email_validation_error">Hmm… Email tidak valid.</string>
+</resources>

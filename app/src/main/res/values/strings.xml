@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">StoryApp</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="register_copy">Don’t have an account? Register</string>
+    <string name="login">Login</string>
+    <string name="choose_from_gallery">Choose from Gallery</string>
+    <string name="or">or</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="share_location">Share location</string>
+    <string name="write_your_story">Write your story…</string>
+    <string name="upload">Upload</string>
+    <string name="permission_needed">Camera permission is needed!</string>
+    <string name="choose_a_file_first">Choose a file first!</string>
+    <string name="password_validation_error">Passwords must contain at least eight characters.</string>
+    <string name="email_validation_error">Hmm… that email doesn\'t look valid</string>
+</resources>

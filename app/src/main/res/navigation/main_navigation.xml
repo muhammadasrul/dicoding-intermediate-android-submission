@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/loginView">
+
+    <fragment
+        android:id="@+id/registerView"
+        android:name="com.acun.storyapp.ui.screen.register.RegisterView"
+        android:label="Register"
+        tools:layout="@layout/fragment_register_view" />
+    <fragment
+        android:id="@+id/loginView"
+        android:name="com.acun.storyapp.ui.screen.login.LoginView"
+        android:label="fragment_login_view"
+        tools:layout="@layout/fragment_login_view" >
+        <action
+            android:id="@+id/action_loginView_to_registerView"
+            app:destination="@id/registerView" />
+        <action
+            android:id="@+id/action_loginView_to_storyView"
+            app:destination="@id/storyView"
+            app:popUpTo="@id/loginView"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/storyView"
+        android:name="com.acun.storyapp.ui.screen.stories.StoriesView"
+        android:label="StoryApp"
+        tools:layout="@layout/fragment_story_view" >
+        <action
+            android:id="@+id/action_storyView_to_addStoryView"
+            app:destination="@id/addStoryView" />
+        <action
+            android:id="@+id/action_storyView_to_detailStoryView"
+            app:destination="@id/detailStoryView" />
+        <action
+            android:id="@+id/action_storyView_to_loginView"
+            app:destination="@id/loginView"
+            app:popUpTo="@id/storyView"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStoryView"
+        android:name="com.acun.storyapp.ui.screen.stories.add_story.AddStoryView"
+        android:label="fragment_add_story_view"
+        tools:layout="@layout/fragment_add_story_view" >
+        <action
+            android:id="@+id/action_addStoryView_to_cameraXView"
+            app:destination="@id/cameraXView" />
+        <argument
+            android:name="uri"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_addStoryView_to_storyView"
+            app:destination="@id/storyView"
+            app:popUpTo="@id/addStoryView"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraXView"
+        android:name="com.acun.storyapp.ui.screen.stories.add_story.camera.CameraXView"
+        android:label="fragment_camera_x_view"
+        tools:layout="@layout/fragment_camera_x_view" >
+        <action
+            android:id="@+id/action_cameraXView_to_addStoryView"
+            app:destination="@id/addStoryView"
+            app:popUpTo="@id/cameraXView"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailStoryView"
+        android:name="com.acun.storyapp.ui.screen.stories.detail_story.DetailStoryView"
+        android:label="fragment_detail_view"
+        tools:layout="@layout/fragment_detail_view" >
+        <argument
+            android:name="story"
+            app:argType="com.acun.storyapp.data.remote.response.StoriesResponse$Story" />
+    </fragment>
+</navigation>
