@@ -11,13 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.TransitionInflater
-import com.acun.storyapp.R
-import com.acun.storyapp.data.remote.Resource
-import com.acun.storyapp.data.remote.response.StoriesResponse
+import com.acun.storyapp.data.local.entity.StoryEntity
+import com.acun.storyapp.data.local.entity.toResponse
 import com.acun.storyapp.databinding.FragmentStoryViewBinding
 import com.acun.storyapp.utils.AppDataStore
-import com.acun.storyapp.utils.toGone
 import com.acun.storyapp.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,10 +28,10 @@ class StoriesView : Fragment() {
 
     private val viewModel: StoriesViewModel by viewModels()
     private val storiesAdapter = StoriesAdapter(object : StoriesAdapter.OnItemClickListener {
-        override fun onItemClicked(item: StoriesResponse.Story, imageView: ImageView) {
+        override fun onItemClicked(item: StoryEntity, imageView: ImageView) {
             val extras = FragmentNavigatorExtras(imageView to item.photoUrl)
             findNavController().navigate(
-                StoriesViewDirections.actionStoryViewToDetailStoryView(item),
+                StoriesViewDirections.actionStoryViewToDetailStoryView(item.toResponse()),
                 extras
             )
         }
@@ -43,14 +40,14 @@ class StoriesView : Fragment() {
         AppDataStore(requireContext())
     }
 
+    private var token: String?  = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         lifecycleScope.launch {
-            dataStore.userToken.collect {
-                viewModel.getStories(token = it, page = 1, size = 100)
-            }
+            dataStore.userToken.collect { token = it }
         }
         return binding.root
     }
@@ -67,33 +64,19 @@ class StoriesView : Fragment() {
             adapter = storiesAdapter
         }
         binding.addStoryButton.setOnClickListener {
-            findNavController().navigate(StoriesViewDirections.actionStoryViewToAddStoryView(null))
+//            findNavController().navigate(StoriesViewDirections.actionStoryViewToAddStoryView(null))
+            findNavController().navigate(StoriesViewDirections.actionStoryViewToMapsView())
         }
     }
 
     private fun observeStories() {
-        viewModel.storyState.observe(viewLifecycleOwner) { resource ->
-            when (resource) {
-                is Resource.Error -> {
-                    binding.errMessageTextView.text = resource.message
-                    binding.errMessageContainer.toVisible()
-                    binding.recyclerViewStory.toGone()
-                    binding.progressBar.toGone()
-                }
-
-                is Resource.Loading -> {
-                    binding.progressBar.toVisible()
-                    binding.errMessageContainer.toGone()
-                    binding.recyclerViewStory.toGone()
-                }
-
-                is Resource.Success -> {
-                    binding.progressBar.toGone()
-                    binding.errMessageContainer.toGone()
+        token?.let {
+            viewModel
+                .getStories(token = it)
+                .observe(viewLifecycleOwner) { data ->
                     binding.recyclerViewStory.toVisible()
-                    storiesAdapter.submitList(resource.data.orEmpty())
+                    storiesAdapter.submitData(lifecycle, data)
                 }
-            }
         }
     }
 }

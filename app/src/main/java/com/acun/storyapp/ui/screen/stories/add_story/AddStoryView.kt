@@ -189,7 +189,7 @@ class AddStoryView : Fragment(), UploadRequestBody.UploadCallback {
 
             binding.buttonAdd.isLoading(true)
             viewModel.uploadFile(
-                token = "Bearer $token",
+                token = token,
                 file = imageMultipart,
                 description = desc,
                 lat = lat,

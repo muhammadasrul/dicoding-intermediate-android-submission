@@ -40,6 +40,9 @@
             app:destination="@id/loginView"
             app:popUpTo="@id/storyView"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_storyView_to_mapsView"
+            app:destination="@id/mapsView" />
     </fragment>
     <fragment
         android:id="@+id/addStoryView"
@@ -79,4 +82,9 @@
             android:name="story"
             app:argType="com.acun.storyapp.data.remote.response.StoriesResponse$Story" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsView"
+        android:name="com.acun.storyapp.ui.screen.maps.MapsView"
+        android:label="fragment_maps_view"
+        tools:layout="@layout/fragment_maps_view" />
 </navigation>

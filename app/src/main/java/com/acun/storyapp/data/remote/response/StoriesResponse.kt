@@ -2,6 +2,7 @@ package com.acun.storyapp.data.remote.response
 
 
 import android.os.Parcelable
+import com.acun.storyapp.data.local.entity.StoryEntity
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -30,4 +31,16 @@ data class StoriesResponse(
         @SerializedName("photoUrl")
         val photoUrl: String
     ): Parcelable
+}
+
+fun StoriesResponse.Story.toEntity(): StoryEntity {
+    return StoryEntity(
+        createdAt = this.createdAt,
+        description = this.description,
+        id = this.id,
+        lat = this.lat,
+        lon = this.lon,
+        name = this.name,
+        photoUrl = this.photoUrl
+    )
 }

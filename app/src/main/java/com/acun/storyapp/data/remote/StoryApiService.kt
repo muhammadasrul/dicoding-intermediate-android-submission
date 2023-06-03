@@ -8,7 +8,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
 
-interface StoryAppService {
+interface StoryApiService {
 
     @FormUrlEncoded
     @POST("register")
@@ -30,6 +30,12 @@ interface StoryAppService {
         @Header("Authorization") token: String,
         @Query("page") page: Int,
         @Query("size") size: Int
+    ): StoriesResponse
+
+    @GET("stories")
+    suspend fun getStoriesWithLocation(
+        @Header("Authorization") token: String,
+        @Query("location") location: Int
     ): StoriesResponse
 
     @GET("stories/{id}")

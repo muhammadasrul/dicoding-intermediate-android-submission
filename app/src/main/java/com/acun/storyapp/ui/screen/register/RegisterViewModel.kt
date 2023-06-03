@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(private val repo: Repository): ViewModel() {
 
-    private var _registerResultResult = MutableLiveData< Resource<SimpleResponse>>()
+    private var _registerResultResult = MutableLiveData<Resource<SimpleResponse>>()
     val registerResult = _registerResultResult
 
     private var _isError = MutableLiveData(false)
