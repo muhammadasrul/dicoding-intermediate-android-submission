@@ -16,4 +16,5 @@
     <string name="choose_a_file_first">Choose a file first!</string>
     <string name="password_validation_error">Passwords must contain at least eight characters.</string>
     <string name="email_validation_error">Hmm… that email doesn\'t look valid</string>
+    <string name="retry">Retry</string>
 </resources>

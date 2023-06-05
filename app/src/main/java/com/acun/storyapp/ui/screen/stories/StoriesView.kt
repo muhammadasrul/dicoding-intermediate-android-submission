@@ -61,7 +61,11 @@ class StoriesView : Fragment() {
     private fun initView() {
         binding.recyclerViewStory.run {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = storiesAdapter
+            adapter = storiesAdapter.withLoadStateFooter(
+                LoadingStateAdapter {
+                    storiesAdapter.retry()
+                }
+            )
         }
         binding.addStoryButton.setOnClickListener {
 //            findNavController().navigate(StoriesViewDirections.actionStoryViewToAddStoryView(null))

@@ -16,4 +16,5 @@
     <string name="choose_a_file_first">Silahkan pilih gambar terlebih dahulu!</string>
     <string name="password_validation_error">Password harus delapan karakter atau lebih.</string>
     <string name="email_validation_error">Hmm… Email tidak valid.</string>
+    <string name="retry">Coba lagi</string>
 </resources>
