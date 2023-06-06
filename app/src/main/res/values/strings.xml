@@ -17,4 +17,5 @@
     <string name="password_validation_error">Passwords must contain at least eight characters.</string>
     <string name="email_validation_error">Hmm… that email doesn\'t look valid</string>
     <string name="retry">Retry</string>
+    <string name="empty_data">Data is Empty</string>
 </resources>

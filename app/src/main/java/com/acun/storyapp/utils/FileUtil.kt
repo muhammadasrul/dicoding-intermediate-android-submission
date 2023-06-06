@@ -15,15 +15,3 @@ fun ContentResolver.getFileName(fileUri: Uri): String {
     }
     return name
 }
-
-fun ContentResolver.getFileSize(fileUri: Uri): Long {
-    var size = 0L
-    val returnCursor = this.query(fileUri, null, null, null, null)
-    if (returnCursor != null) {
-        val sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE)
-        returnCursor.moveToFirst()
-        size = returnCursor.getLong(sizeIndex)
-        returnCursor.close()
-    }
-    return size
-}

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/app_purple_light"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +54,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/app_story_card_layout"
         tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mapsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_map_24"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@id/addStoryButton"
+        app:layout_constraintEnd_toEndOf="@id/addStoryButton"
+        app:layout_constraintStart_toStartOf="@id/addStoryButton" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addStoryButton"

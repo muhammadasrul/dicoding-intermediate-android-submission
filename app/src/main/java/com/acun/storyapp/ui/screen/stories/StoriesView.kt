@@ -8,13 +8,18 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.acun.storyapp.R
 import com.acun.storyapp.data.local.entity.StoryEntity
 import com.acun.storyapp.data.local.entity.toResponse
 import com.acun.storyapp.databinding.FragmentStoryViewBinding
 import com.acun.storyapp.utils.AppDataStore
+import com.acun.storyapp.utils.isVisible
+import com.acun.storyapp.utils.toGone
 import com.acun.storyapp.utils.toVisible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -59,6 +64,17 @@ class StoriesView : Fragment() {
     }
 
     private fun initView() {
+        viewModel.viewModelScope.launch {
+            storiesAdapter.loadStateFlow.collect {
+                if (it.prepend is LoadState.NotLoading && it.prepend.endOfPaginationReached) {
+                    binding.progressBar.toGone()
+                }
+                if (it.append is LoadState.NotLoading && it.append.endOfPaginationReached) {
+                    binding.errMessageTextView.text = getString(R.string.empty_data)
+                    binding.errMessageContainer.isVisible(storiesAdapter.itemCount < 1)
+                }
+            }
+        }
         binding.recyclerViewStory.run {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = storiesAdapter.withLoadStateFooter(
@@ -68,7 +84,9 @@ class StoriesView : Fragment() {
             )
         }
         binding.addStoryButton.setOnClickListener {
-//            findNavController().navigate(StoriesViewDirections.actionStoryViewToAddStoryView(null))
+            findNavController().navigate(StoriesViewDirections.actionStoryViewToAddStoryView(null))
+        }
+        binding.mapsButton.setOnClickListener {
             findNavController().navigate(StoriesViewDirections.actionStoryViewToMapsView())
         }
     }

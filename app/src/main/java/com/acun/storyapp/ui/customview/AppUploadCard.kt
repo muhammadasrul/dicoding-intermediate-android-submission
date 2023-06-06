@@ -48,7 +48,7 @@ class AppUploadCard: ConstraintLayout {
         onClickListener = listener
     }
 
-    fun reset() {
+    private fun reset() {
         with(binding) {
             imageContainer.toGone()
             fileNameTextView.toGone()

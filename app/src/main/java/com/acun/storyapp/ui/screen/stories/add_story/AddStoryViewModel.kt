@@ -8,7 +8,6 @@ import com.acun.storyapp.data.remote.Resource
 import com.acun.storyapp.data.remote.response.SimpleResponse
 import com.acun.storyapp.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

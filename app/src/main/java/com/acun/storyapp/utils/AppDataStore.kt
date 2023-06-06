@@ -8,7 +8,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.map
 
-val Context.appPref: DataStore<Preferences> by preferencesDataStore("story_pref")
 val Context.tokenPref: DataStore<Preferences> by preferencesDataStore("story_pref")
 class AppDataStore(private val context: Context) {
 

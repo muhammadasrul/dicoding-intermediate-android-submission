@@ -12,9 +12,11 @@ import com.acun.storyapp.data.remote.Resource
 import com.acun.storyapp.data.remote.response.StoriesResponse
 import com.acun.storyapp.databinding.FragmentMapsViewBinding
 import com.acun.storyapp.utils.AppDataStore
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -52,26 +54,8 @@ class MapsView : Fragment() {
     private fun observeStories() {
         viewModel.storyState.observe(viewLifecycleOwner) { resource ->
             when (resource) {
-                is Resource.Error -> {
-//                    binding.errMessageTextView.text = resource.message
-//                    binding.errMessageContainer.toVisible()
-//                    binding.recyclerViewStory.toGone()
-//                    binding.progressBar.toGone()
-                }
-
-                is Resource.Loading -> {
-//                    binding.progressBar.toVisible()
-//                    binding.errMessageContainer.toGone()
-//                    binding.recyclerViewStory.toGone()
-                }
-
-                is Resource.Success -> {
-//                    binding.progressBar.toGone()
-//                    binding.errMessageContainer.toGone()
-//                    binding.recyclerViewStory.toVisible()
-//                    storiesAdapter.submitList(resource.data.orEmpty())
-                    setupMaps(resource.data.orEmpty())
-                }
+                is Resource.Success -> setupMaps(resource.data.orEmpty())
+                else -> Unit
             }
         }
     }
@@ -79,13 +63,23 @@ class MapsView : Fragment() {
     private fun setupMaps(data: List<StoriesResponse.Story>) {
         val callback = OnMapReadyCallback { googleMap ->
             data.forEach { story ->
+                googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                        requireContext(),
+                        R.raw.maps_style
+                    )
+                )
                 googleMap.addMarker(
                     MarkerOptions()
                         .position(LatLng(story.lat, story.lon))
                         .title(story.name)
+                        .snippet(story.description)
                 )
             }
-//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(story.lat, story.lon)))
+            googleMap.moveCamera(
+                CameraUpdateFactory
+                    .newLatLngZoom(LatLng(-7.593439, 110.599065), 5f)
+            )
         }
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?

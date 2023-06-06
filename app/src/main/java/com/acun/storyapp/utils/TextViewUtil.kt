@@ -1,10 +1,9 @@
 package com.acun.storyapp.utils
 
 import android.location.Geocoder
-import android.util.Log
 import android.widget.TextView
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 fun TextView.setLocation(lat: Double, long: Double) {
     text = try {
